@@ -1,0 +1,20 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+blog_venv/
+env/
+ENV/
+
+# Mac/Linux system files
+.DS_Store
+
+# Database
+db.sqlite3
+
+# Django staticfiles
+/staticfiles/
