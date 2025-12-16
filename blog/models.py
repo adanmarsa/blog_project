@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -37,7 +38,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
-    author_name = models.CharField(max_length=50)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

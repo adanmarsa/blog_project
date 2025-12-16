@@ -48,10 +48,14 @@ def post_detail(request, slug):
     comments = post.comment_set.all()  # fetch all comments for this post
 
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return redirect('accounts:login')
+        
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post  # associate comment with this post
+            comment.author = request.user
             comment.save()
             return redirect("blog:post_detail", slug=post.slug)
     else:
